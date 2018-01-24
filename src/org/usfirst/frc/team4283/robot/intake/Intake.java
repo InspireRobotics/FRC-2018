@@ -1,4 +1,6 @@
-package intake;
+package org.usfirst.frc.team4283.robot.intake;
+
+import org.usfirst.frc.team4283.robot.pneumatic.TwoValvePneumatic;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Victor;
@@ -10,9 +12,19 @@ public class Intake {
 
 	private Victor intakeLeft = new Victor(0);
 	private Victor intakeRight = new Victor(0);
+	private TwoValvePneumatic left = new TwoValvePneumatic(0, 0, "Left Pneumatic");
+	private TwoValvePneumatic right = new TwoValvePneumatic(1, 0, "Right Pneumatic");
+	
 	private double maxSpeedRight = 1.0, maxSpeedLeft = 1.0;
-
+	
 	public void updateTeleOp() {
+		updateWheels();
+		
+		left.updateDashboard();
+		right.updateDashboard();
+	}
+
+	private void updateWheels() {
 		double leftSpeed = -auxController.getRawAxis(1);
 		double rightSpeed = -auxController.getRawAxis(5);
 
