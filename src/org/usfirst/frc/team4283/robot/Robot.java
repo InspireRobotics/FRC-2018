@@ -1,12 +1,20 @@
 package org.usfirst.frc.team4283.robot;
 
 import org.usfirst.frc.team4283.robot.drivetrain.Drivetrain;
+import org.usfirst.frc.team4283.robot.intake.Intake;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
+	
+	/*
+	 * Subsystems
+	 */
+	private final boolean intakeEnabled = false;
+	private final boolean blinkyEnabled = false;
+	
 	/*
 	 * Auto Choosing 
 	 */
@@ -17,8 +25,9 @@ public class Robot extends IterativeRobot {
 	private SendableChooser<String> autoChooser = new SendableChooser<>();
 	
 	/*
-	 * Drivetrain
+	 * Subsystems
 	 */
+	private Intake intake;
 	private Drivetrain drive;
 	
 	@Override
@@ -29,6 +38,9 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto choices", autoChooser);
 		
 		drive = new Drivetrain();
+		
+		if(intakeEnabled)
+			intake = new Intake();
 	}
 
 	
@@ -46,6 +58,8 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
+		if(intakeEnabled)
+			intake.updateTeleOp();
 		drive.teleopInit();
 	}
 	
