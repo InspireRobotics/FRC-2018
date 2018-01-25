@@ -15,7 +15,7 @@ public class Leddar{
 	}
 	
 	public void getDetections() {
-		byte[] buffer = new byte[7];
+		byte[] buffer = new byte[8];
 	}
 	
 }
