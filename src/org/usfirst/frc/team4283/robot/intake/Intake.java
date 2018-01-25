@@ -29,14 +29,16 @@ public class Intake {
 	
 	public boolean intakeFull() {
 		boolean intakeFull = false;
-		
+		int rawCubeSensorValue = cubeDetector.getValue();
+		if(rawCubeSensorValue > 500){
+			intakeFull = true;
+		}
 		return intakeFull;
 	}
 	
 	private void updateWheels() {
 		double leftSpeed = -auxController.getRawAxis(1);
 		double rightSpeed = -auxController.getRawAxis(5);
-
 		// Get variables from the SmartDashboard
 		maxSpeedRight = SmartDashboard.getNumber("Max Speed Right", 1);
 		maxSpeedLeft = SmartDashboard.getNumber("Max Speed Left", 1);
@@ -53,8 +55,17 @@ public class Intake {
 			leftSpeed = -maxSpeedLeft;
 
 		// Set the intake
-		intakeLeft.set(leftSpeed);
-		intakeRight.set(rightSpeed);
+		if(intakeFull()){
+			if(leftSpeed > 0.0){
+				intakeLeft.set(leftSpeed);
+			}
+			if(rightSpeed > 0.0){
+				intakeRight.set(rightSpeed);
+			}
+		}else if(!intakeFull()){
+			intakeLeft.set(leftSpeed);
+			intakeRight.set(rightSpeed);
+		}
 
 		// Put variables on the Smart Dashboard
 		SmartDashboard.putNumber("Max Speed Right", maxSpeedRight);
