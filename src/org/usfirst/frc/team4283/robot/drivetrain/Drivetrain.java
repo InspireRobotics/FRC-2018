@@ -1,5 +1,7 @@
 package org.usfirst.frc.team4283.robot.drivetrain;
 
+import org.usfirst.frc.team4283.robot.led.LEDController;
+
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Spark;
@@ -143,11 +145,16 @@ public class Drivetrain {
 //		 SmartDashboard.putNumber("Auto Right", 0);
 	}
 	
-	public void autoUpdate(){
+	public void autoUpdate(boolean useBlinky){
 		if(endTime > System.currentTimeMillis()){
 			System.out.printf("Left: %f, Right: %f\n", leftAuto, rightAuto);
 			drive.tankDrive(leftAuto, rightAuto);
+			
+			if(useBlinky)
+				LEDController.setColor(LEDController.Colors.GREEN);
 		}else{
+			if(useBlinky)
+				LEDController.setColor(LEDController.Colors.RED);
 			drive.tankDrive(0, 0);
 		}
 	}
