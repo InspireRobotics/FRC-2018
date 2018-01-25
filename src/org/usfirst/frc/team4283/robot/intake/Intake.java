@@ -66,10 +66,11 @@ public class Intake {
 			intakeLeft.set(leftSpeed);
 			intakeRight.set(rightSpeed);
 		}
-
+		
 		// Put variables on the Smart Dashboard
 		SmartDashboard.putNumber("Max Speed Right", maxSpeedRight);
 		SmartDashboard.putNumber("Max Speed Left", maxSpeedLeft);
+		SmartDashboard.putBoolean("Power Cube in Intake", intakeFull());
 	}
 
 }
