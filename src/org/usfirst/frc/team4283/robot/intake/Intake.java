@@ -10,33 +10,35 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Intake {
 
 	private Joystick auxController = new Joystick(1);
-	
-	private AnalogInput cubeDetector = new AnalogInput(1); //  ********change this channel later********
+
+	private AnalogInput cubeDetector = new AnalogInput(1); // ********change
+															// this channel
+															// later********
 
 	private Victor intakeLeft = new Victor(0);
 	private Victor intakeRight = new Victor(0);
 	private TwoValvePneumatic left = new TwoValvePneumatic(0, 0, "Left Pneumatic");
 	private TwoValvePneumatic right = new TwoValvePneumatic(1, 0, "Right Pneumatic");
-	
+
 	private double maxSpeedRight = 1.0;
 	private double maxSpeedLeft = 1.0;
-	
+
 	public void updateTeleOp() {
 		updateWheels();
-		
+
 		left.updateDashboard();
 		right.updateDashboard();
 	}
-	
+
 	public boolean intakeFull() {
 		boolean intakeFull = false;
 		int rawCubeSensorValue = cubeDetector.getValue();
-		if(rawCubeSensorValue > 500){
+		if (rawCubeSensorValue > 500) {
 			intakeFull = true;
 		}
 		return intakeFull;
 	}
-	
+
 	private void updateWheels() {
 		double leftSpeed = -auxController.getRawAxis(1);
 		double rightSpeed = -auxController.getRawAxis(5);
@@ -56,18 +58,18 @@ public class Intake {
 			leftSpeed = -maxSpeedLeft;
 
 		// Set the intake, prevent intake from sucking in when full
-		if(intakeFull()){
-			if(leftSpeed > 0.0){
+		if (intakeFull()) {
+			if (leftSpeed > 0.0) {
 				intakeLeft.set(leftSpeed);
 			}
-			if(rightSpeed > 0.0){
+			if (rightSpeed > 0.0) {
 				intakeRight.set(rightSpeed);
 			}
-		}else if(!intakeFull()){
+		} else if (!intakeFull()) {
 			intakeLeft.set(leftSpeed);
 			intakeRight.set(rightSpeed);
 		}
-		
+
 		// Put variables on the Smart Dashboard
 		SmartDashboard.putNumber("Max Speed Right", maxSpeedRight);
 		SmartDashboard.putNumber("Max Speed Left", maxSpeedLeft);
