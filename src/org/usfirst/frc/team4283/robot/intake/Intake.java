@@ -18,7 +18,8 @@ public class Intake {
 	private TwoValvePneumatic left = new TwoValvePneumatic(0, 0, "Left Pneumatic");
 	private TwoValvePneumatic right = new TwoValvePneumatic(1, 0, "Right Pneumatic");
 	
-	private double maxSpeedRight = 1.0, maxSpeedLeft = 1.0;
+	private double maxSpeedRight = 1.0;
+	private double maxSpeedLeft = 1.0;
 	
 	public void updateTeleOp() {
 		updateWheels();
@@ -54,7 +55,7 @@ public class Intake {
 		else if (leftSpeed < -maxSpeedLeft)
 			leftSpeed = -maxSpeedLeft;
 
-		// Set the intake
+		// Set the intake, prevent intake from sucking in when full
 		if(intakeFull()){
 			if(leftSpeed > 0.0){
 				intakeLeft.set(leftSpeed);
