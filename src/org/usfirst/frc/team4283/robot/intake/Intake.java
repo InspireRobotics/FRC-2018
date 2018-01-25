@@ -4,11 +4,14 @@ import org.usfirst.frc.team4283.robot.pneumatic.TwoValvePneumatic;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Intake {
 
 	private Joystick auxController = new Joystick(1);
+	
+	private AnalogInput cubeDetector = new AnalogInput(1); //  ********change this channel later********
 
 	private Victor intakeLeft = new Victor(0);
 	private Victor intakeRight = new Victor(0);
@@ -23,7 +26,13 @@ public class Intake {
 		left.updateDashboard();
 		right.updateDashboard();
 	}
-
+	
+	public boolean intakeFull() {
+		boolean intakeFull = false;
+		
+		return intakeFull;
+	}
+	
 	private void updateWheels() {
 		double leftSpeed = -auxController.getRawAxis(1);
 		double rightSpeed = -auxController.getRawAxis(5);
