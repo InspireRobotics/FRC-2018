@@ -1,5 +1,6 @@
 package io.github.inspirerobotics.leddar;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.SerialPort.Parity;
 
@@ -7,6 +8,12 @@ public class Leddar{
 
 	private static final Parity PARITY = Parity.kNone;
 	private static final int STOP_BITS = 1;
+	
+	/*
+	 * Error Codes
+	 */
+	private static final int ERR_LEDDAR_BAD_FUNCTION_CODE = 0;
+	private static final int ERR_LEDDAR_BAD_CRC = 1;
 	
 	/**
 	 * The serial port for the LEDDAR sensor
@@ -23,6 +30,31 @@ public class Leddar{
 		serialPort = new SerialPort(baudRate, port, STOP_BITS, PARITY);
 	}
 	
+	public void update() {
+		if(serialPort.getBytesReceived() > 0)
+			handleIncomingPacket();
+	}
+	
+	private void handleIncomingPacket() {
+		//Read incoming bytes
+		byte[] buffer = serialPort.read(25);
+		
+		//Check CRC
+		if(!CRC16.checkCRC16(buffer)) {
+			DriverStation.reportError("LEDDAR Error: " + ERR_LEDDAR_BAD_CRC, false);
+			return;
+		}
+		
+		//Check the function code
+		if(buffer[0] != 0x04) {
+			DriverStation.reportError("LEDDAR Error: " + ERR_LEDDAR_BAD_FUNCTION_CODE, false);
+			return;
+		}
+		
+		//Check the number of registers return
+		
+	}
+
 	/**
 	 * Sends a request to get info from the LEDDAR sensor
 	 */
@@ -36,9 +68,9 @@ public class Leddar{
 		buffer[3] = 20;//Starting address of the register
 		buffer[4] = 0;
 		buffer[5] = 10;//Number of registers to read
-		
+	
 		//Add CRC bytes
-		CR16.addCRC16(buffer);
+		CRC16.addCRC16(buffer);
 		
 		serialPort.write(buffer, buffer.length);
 	}
