@@ -8,13 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class LEDController {
 
 	private static LEDController instance;
-<<<<<<< HEAD
-
-	private Spark spark = new Spark(0);
-=======
-	
 	private Spark spark = new Spark(HardwareMap.PWM.BLINKY);
->>>>>>> master
 	private double val;
 
 	private LEDController() {
