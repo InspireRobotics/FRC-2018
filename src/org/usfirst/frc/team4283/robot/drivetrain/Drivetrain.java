@@ -20,7 +20,7 @@ public class Drivetrain {
 	
 	private SpeedControllerGroup leftGroup, rightGroup;
 	
-	private Joystick driveController = new Joystick(0);
+	private Joystick driveController = HardwareMap.Joysticks.DRIVE;
 	
 	//Create speed variables
 	private double leftSpeed;
