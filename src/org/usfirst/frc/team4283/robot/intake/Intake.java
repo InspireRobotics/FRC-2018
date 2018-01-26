@@ -1,18 +1,23 @@
 package org.usfirst.frc.team4283.robot.intake;
 
 import org.usfirst.frc.team4283.robot.HardwareMap;
-import org.usfirst.frc.team4283.robot.pneumatic.TwoValvePneumatic;
 
+/**
+ * @author Colin
+ */
+
+import org.usfirst.frc.team4283.robot.pneumatic.TwoValvePneumatic;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Intake {
 
 	private Joystick auxController = new Joystick(1);
-
-	private Victor intakeLeft = new Victor(HardwareMap.PWM.INTAKE_LEFT);
-	private Victor intakeRight = new Victor(HardwareMap.PWM.INTAKE_RIGHT);
+	private AnalogInput cubeDetector = new AnalogInput(1); //  ********change this channel later********
+	private Spark intakeLeft = new Spark(0);
+	private Spark intakeRight = new Spark(0);
 	private TwoValvePneumatic left = new TwoValvePneumatic(0, 0, "Left Pneumatic");
 	private TwoValvePneumatic right = new TwoValvePneumatic(1, 0, "Right Pneumatic");
 	
@@ -24,7 +29,13 @@ public class Intake {
 		left.updateDashboard();
 		right.updateDashboard();
 	}
-
+	
+	public boolean intakeFull() {
+		boolean intakeFull = false;
+		
+		return intakeFull;
+	}
+	
 	private void updateWheels() {
 		double leftSpeed = -auxController.getRawAxis(1);
 		double rightSpeed = -auxController.getRawAxis(5);

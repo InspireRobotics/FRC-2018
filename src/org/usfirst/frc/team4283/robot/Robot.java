@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 	
 	/*
-	 * Subsystems
+	 * Subsystems enable control
 	 */
 	private final boolean intakeEnabled = false;
 	private final boolean blinkyEnabled = false;
