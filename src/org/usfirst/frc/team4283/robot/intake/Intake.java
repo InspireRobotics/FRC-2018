@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4283.robot.intake;
 
+import org.usfirst.frc.team4283.robot.HardwareMap;
 import org.usfirst.frc.team4283.robot.pneumatic.TwoValvePneumatic;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -10,8 +11,8 @@ public class Intake {
 
 	private Joystick auxController = new Joystick(1);
 
-	private Victor intakeLeft = new Victor(0);
-	private Victor intakeRight = new Victor(0);
+	private Victor intakeLeft = new Victor(HardwareMap.PWM.INTAKE_LEFT);
+	private Victor intakeRight = new Victor(HardwareMap.PWM.INTAKE_RIGHT);
 	private TwoValvePneumatic left = new TwoValvePneumatic(0, 0, "Left Pneumatic");
 	private TwoValvePneumatic right = new TwoValvePneumatic(1, 0, "Right Pneumatic");
 	

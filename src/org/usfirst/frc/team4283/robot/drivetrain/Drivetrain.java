@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4283.robot.drivetrain;
 
+import org.usfirst.frc.team4283.robot.HardwareMap;
 import org.usfirst.frc.team4283.robot.led.LEDController;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
@@ -10,9 +11,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Drivetrain {
-	
-	private static final int FR_PORT = 0, BR_PORT = 1, FL_PORT = 3, BL_PORT = 2;
-	
+		
 	private DifferentialDrive drive;
 	
 	private final Spark fr, br, fl, bl;
@@ -45,10 +44,10 @@ public class Drivetrain {
 	
 	public Drivetrain() {
 		//Create motor controller objects
-		fr = new Spark(FR_PORT);
-		fl = new Spark(FL_PORT);
-		br = new Spark(BR_PORT);
-		bl = new Spark(BL_PORT);
+		fr = new Spark(HardwareMap.PWM.DRIVE_FR);
+		fl = new Spark(HardwareMap.PWM.DRIVE_FL);
+		br = new Spark(HardwareMap.PWM.DRIVE_BR);
+		bl = new Spark(HardwareMap.PWM.DRIVE_BL);
 		
 		//Create the side modules
 		leftGroup = new SpeedControllerGroup(bl, fl);
