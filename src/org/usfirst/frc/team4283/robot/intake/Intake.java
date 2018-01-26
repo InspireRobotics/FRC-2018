@@ -13,11 +13,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Intake {
 
-	private Joystick auxController = new Joystick(1);
+	private Joystick auxController = HardwareMap.Joysticks.AUX;
 	private Spark intakeLeft = new Spark(HardwareMap.PWM.INTAKE_LEFT);
 	private Spark intakeRight = new Spark(HardwareMap.PWM.INTAKE_LEFT);
-	private TwoValvePneumatic left = new TwoValvePneumatic(0, 0, "Left Pneumatic");
-	private TwoValvePneumatic right = new TwoValvePneumatic(1, 0, "Right Pneumatic");
+	private TwoValvePneumatic left = new TwoValvePneumatic(HardwareMap.Pneumatic.LEFT_INTAKE, 0, "Left Pneumatic");
+	private TwoValvePneumatic right = new TwoValvePneumatic(HardwareMap.Pneumatic.RIGHT_INTAKE, 0, "Right Pneumatic");
 	
 	private double maxSpeedRight = 1.0, maxSpeedLeft = 1.0;
 	
