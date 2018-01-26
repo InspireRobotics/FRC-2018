@@ -1,5 +1,6 @@
 package org.usfirst.frc.team4283.robot.drivetrain;
 
+import org.usfirst.frc.team4283.robot.HardwareMap;
 import org.usfirst.frc.team4283.robot.led.LEDController;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
@@ -10,9 +11,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Drivetrain {
-	
-	private static final int FR_PORT = 0, BR_PORT = 1, FL_PORT = 3, BL_PORT = 2;
-	
+		
 	private DifferentialDrive drive;
 	
 	private final Spark fr, br, fl, bl;
@@ -23,32 +22,28 @@ public class Drivetrain {
 	
 	private Joystick driveController = new Joystick(0);
 	
+	//Create speed variables
 	private double leftSpeed;
-	
 	private double rightSpeed;
-	
 	private double increment;
 	
+	//Create the gyro and gyro variables
 	private AnalogGyro gyro = new AnalogGyro(0);
-	
 	private double gyroAngle;
-	
 	private double initialGyroDirection;
-	
 	private boolean isDrivingStraight = false;
-	
 	private double turnError;
 	
+	//Create auto variables
 	private long endTime;
-	
 	private double leftAuto, rightAuto;
 	
 	public Drivetrain() {
 		//Create motor controller objects
-		fr = new Spark(FR_PORT);
-		fl = new Spark(FL_PORT);
-		br = new Spark(BR_PORT);
-		bl = new Spark(BL_PORT);
+		fr = new Spark(HardwareMap.PWM.DRIVE_FR);
+		fl = new Spark(HardwareMap.PWM.DRIVE_FL);
+		br = new Spark(HardwareMap.PWM.DRIVE_BR);
+		bl = new Spark(HardwareMap.PWM.DRIVE_BL);
 		
 		//Create the side modules
 		leftGroup = new SpeedControllerGroup(bl, fl);
@@ -123,7 +118,7 @@ public class Drivetrain {
 			drive.tankDrive(-leftSpeed, -rightSpeed);
 			isDrivingStraight = false;
 		}
-
+		//Dashboard formatting
 		SmartDashboard.putNumber("Max Speed Right", maxSpeedRight);
 		SmartDashboard.putNumber("Max Speed Left", maxSpeedLeft);
 		SmartDashboard.putNumber("Gyro Angle", gyroAngle);
@@ -146,7 +141,7 @@ public class Drivetrain {
 	}
 	
 	public void autoUpdate(boolean useBlinky){
-		if(endTime > System.currentTimeMillis()){
+		if(endTime > System.currentTimeMillis()){//
 			System.out.printf("Left: %f, Right: %f\n", leftAuto, rightAuto);
 			drive.tankDrive(leftAuto, rightAuto);
 			

@@ -13,8 +13,7 @@ public class Intake {
 
 	private AnalogInput cubeDetector = new AnalogInput(1); // ********change
 															// this channel
-															// later********
-
+															// later*******
 	private Victor intakeLeft = new Victor(0);
 	private Victor intakeRight = new Victor(0);
 	private TwoValvePneumatic left = new TwoValvePneumatic(0, 0, "Left Pneumatic");
