@@ -23,24 +23,20 @@ public class Drivetrain {
 	
 	private Joystick driveController = new Joystick(0);
 	
+	//Create speed variables
 	private double leftSpeed;
-	
 	private double rightSpeed;
-	
 	private double increment;
 	
+	//Create the gyro and gyro variables
 	private AnalogGyro gyro = new AnalogGyro(0);
-	
 	private double gyroAngle;
-	
 	private double initialGyroDirection;
-	
 	private boolean isDrivingStraight = false;
-	
 	private double turnError;
 	
+	//Create auto variables
 	private long endTime;
-	
 	private double leftAuto, rightAuto;
 	
 	public Drivetrain() {
@@ -123,7 +119,7 @@ public class Drivetrain {
 			drive.tankDrive(-leftSpeed, -rightSpeed);
 			isDrivingStraight = false;
 		}
-
+		//Dashboard formatting
 		SmartDashboard.putNumber("Max Speed Right", maxSpeedRight);
 		SmartDashboard.putNumber("Max Speed Left", maxSpeedLeft);
 		SmartDashboard.putNumber("Gyro Angle", gyroAngle);
@@ -146,7 +142,7 @@ public class Drivetrain {
 	}
 	
 	public void autoUpdate(boolean useBlinky){
-		if(endTime > System.currentTimeMillis()){
+		if(endTime > System.currentTimeMillis()){//
 			System.out.printf("Left: %f, Right: %f\n", leftAuto, rightAuto);
 			drive.tankDrive(leftAuto, rightAuto);
 			
