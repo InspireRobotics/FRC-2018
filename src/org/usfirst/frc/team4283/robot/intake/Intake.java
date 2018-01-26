@@ -1,11 +1,12 @@
 package org.usfirst.frc.team4283.robot.intake;
 
+import org.usfirst.frc.team4283.robot.HardwareMap;
+
 /**
  * @author Colin
  */
 
 import org.usfirst.frc.team4283.robot.pneumatic.TwoValvePneumatic;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -14,9 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Intake {
 
 	private Joystick auxController = new Joystick(1);
-	
 	private AnalogInput cubeDetector = new AnalogInput(1); //  ********change this channel later********
-
 	private Spark intakeLeft = new Spark(0);
 	private Spark intakeRight = new Spark(0);
 	private TwoValvePneumatic left = new TwoValvePneumatic(0, 0, "Left Pneumatic");

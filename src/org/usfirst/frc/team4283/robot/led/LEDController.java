@@ -1,5 +1,7 @@
 package org.usfirst.frc.team4283.robot.led;
 
+import org.usfirst.frc.team4283.robot.HardwareMap;
+
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -7,7 +9,7 @@ public class LEDController {
 	
 	private static LEDController instance;
 	
-	private Spark spark = new Spark(0);
+	private Spark spark = new Spark(HardwareMap.PWM.BLINKY);
 	private double val;
 	
 	private LEDController() {
