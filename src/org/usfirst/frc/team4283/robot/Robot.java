@@ -6,8 +6,10 @@ import org.usfirst.frc.team4283.robot.led.LEDController;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import io.github.inspirerobotics.leddar.Leddar;
 
 public class Robot extends IterativeRobot {
 	
@@ -16,6 +18,7 @@ public class Robot extends IterativeRobot {
 	 */
 	private final boolean intakeEnabled = false;
 	private final boolean blinkyEnabled = false;
+	private final boolean leddarEnabled = false;
 	
 	/*
 	 * Auto Choosing 
@@ -32,6 +35,12 @@ public class Robot extends IterativeRobot {
 	private Intake intake;
 	private Drivetrain drive;
 	
+	/*
+	 * Sensors
+	 */
+	private Leddar leddar;
+	private long lastLeddarUpdate;
+	
 	@Override
 	public void robotInit() {
 		autoChooser.addDefault("Default Auto", middleAuto);
@@ -45,6 +54,9 @@ public class Robot extends IterativeRobot {
 		if(blinkyEnabled){
 			LEDController.init();
 			LEDController.setColor(LEDController.Colors.WHITE);
+		}
+		if(leddarEnabled) {
+			leddar = new Leddar(Port.kUSB, 115200);
 		}
 			
 	}
@@ -88,6 +100,13 @@ public class Robot extends IterativeRobot {
 				LEDController.setColor(LEDController.Colors.WHITE);
 			}else{
 				LEDController.setColor(LEDController.Colors.ORANGE);
+			}
+		}
+		if(leddarEnabled) {
+			System.out.println("Leddar Distance: " + leddar.getCurrentDistance());
+			if(System.currentTimeMillis() > lastLeddarUpdate + 1000) {
+				leddar.sendRequest();
+				lastLeddarUpdate = System.currentTimeMillis();
 			}
 		}
 			
