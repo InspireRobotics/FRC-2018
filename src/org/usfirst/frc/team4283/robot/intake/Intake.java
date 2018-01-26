@@ -1,30 +1,16 @@
 package org.usfirst.frc.team4283.robot.intake;
 
+import org.usfirst.frc.team4283.robot.HardwareMap;
 import org.usfirst.frc.team4283.robot.pneumatic.TwoValvePneumatic;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Victor;
-import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Intake {
-
-<<<<<<< HEAD
-	private Joystick auxController = new Joystick(1);
-
-	private AnalogInput cubeDetector = new AnalogInput(1); // ********change
-															// this channel
-															// later*******
-	private Victor intakeLeft = new Victor(0);
-	private Victor intakeRight = new Victor(0);
-	private TwoValvePneumatic left = new TwoValvePneumatic(0, 0, "Left Pneumatic");
-	private TwoValvePneumatic right = new TwoValvePneumatic(1, 0, "Right Pneumatic");
-
-	private double maxSpeedRight = 1.0;
-	private double maxSpeedLeft = 1.0;
-
-=======
+	private AnalogInput cubeDetector = new AnalogInput(1);
 	private Joystick auxController = HardwareMap.Joysticks.AUX;
 	private Spark intakeLeft = new Spark(HardwareMap.PWM.INTAKE_LEFT);
 	private Spark intakeRight = new Spark(HardwareMap.PWM.INTAKE_LEFT);
@@ -40,7 +26,6 @@ public class Intake {
 		compressor.start();
 	}
 	
->>>>>>> Github/master
 	public void updateTeleOp() {
 		updateWheels();
 
