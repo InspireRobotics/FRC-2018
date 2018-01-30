@@ -14,6 +14,10 @@ public class Robot extends IterativeRobot {
 		compressor.setClosedLoopControl(true);
 		compressor.setName("Compressor");
 		compressor.start();
+		
+		subs.robotInit();
+		
+		Controls.init();
 	}
 	
 	@Override
@@ -30,6 +34,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		subs.autoPeriodic();
+		
+		Scheduler.getInstance().run();
 	}
 
 	@Override
@@ -41,5 +47,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		subs.teleOpPeriodic();
+		
+		Scheduler.getInstance().run();
 	}
 }

@@ -12,7 +12,7 @@ public class Arm extends Subsystem implements StandardSubsystem {
 	private TwoValvePneumatic right;
 	
 	public Arm() {
-		
+		this.setName(toString());
 	}
 
 	@Override
@@ -57,6 +57,11 @@ public class Arm extends Subsystem implements StandardSubsystem {
 	
 	public TwoValvePneumatic getRight() {
 		return right;
+	}
+	
+	@Override
+	public String toString() {
+		return "Arm";
 	}
 
 }
