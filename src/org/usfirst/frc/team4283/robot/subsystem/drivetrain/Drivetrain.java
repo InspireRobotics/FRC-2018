@@ -1,7 +1,8 @@
-package org.usfirst.frc.team4283.robot.drivetrain;
+package org.usfirst.frc.team4283.robot.subsystem.drivetrain;
 
 import org.usfirst.frc.team4283.robot.HardwareMap;
-import org.usfirst.frc.team4283.robot.led.LEDController;
+import org.usfirst.frc.team4283.robot.subsystem.StandardSubsystem;
+import org.usfirst.frc.team4283.robot.subsystem.led.LEDController;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Joystick;
@@ -10,7 +11,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class Drivetrain {
+public class Drivetrain implements StandardSubsystem {
 		
 	private DifferentialDrive drive;
 	
@@ -34,10 +35,6 @@ public class Drivetrain {
 	private boolean isDrivingStraight = false;
 	private double turnError;
 	
-	//Create auto variables
-	private long endTime;
-	private double leftAuto, rightAuto;
-	
 	public Drivetrain() {
 		//Create motor controller objects
 		fr = new Spark(HardwareMap.PWM.DRIVE_FR);
@@ -52,11 +49,6 @@ public class Drivetrain {
 		//Init the the drive train
 		drive = new DifferentialDrive(leftGroup, rightGroup);
 		drive.setName("Drivetrain");
-		//Just like Alex likes it
-		
-		//Add Stuff to the Dashboardt
-		SmartDashboard.putData(drive);
-		SmartDashboard.putNumber("Speed Increment", .01);
 	}
 	
 	public void teleopInit(){
@@ -129,31 +121,30 @@ public class Drivetrain {
 		SmartDashboard.putData(drive);
 	}
 
-	
-	
-	public void autoInit() {
-		long time = (long) SmartDashboard.getNumber("Auto Time", 0);
-		System.out.println(time);
-		leftAuto = SmartDashboard.getNumber("Auto Left", 0.1);
-		rightAuto = SmartDashboard.getNumber("Auto Right", 0.1);
-		this.endTime = System.currentTimeMillis() + time;
-		 SmartDashboard.putNumber("Auto Left", leftAuto);
-		 SmartDashboard.putNumber("Auto Right", rightAuto);
-		 SmartDashboard.putNumber("Auto Time", time);
+
+	@Override
+	public void robotInit() {
+		
 	}
-	
-	public void autoUpdate(boolean useBlinky){
-		if(endTime > System.currentTimeMillis()){//
-			System.out.printf("Left: %f, Right: %f\n", leftAuto, rightAuto);
-			drive.tankDrive(leftAuto, rightAuto);
-			
-			if(useBlinky)
-				LEDController.setColor(LEDController.Colors.GREEN);
-		}else{
-			if(useBlinky)
-				LEDController.setColor(LEDController.Colors.RED);
-			drive.tankDrive(0, 0);
-		}
+
+	@Override
+	public void teleOpInit() {
+		
+	}
+
+	@Override
+	public void teleOpPeriodic() {
+		
+	}
+
+	@Override
+	public void autoPeriodic() {
+		
+	}
+
+	@Override
+	public void disable() {
+		
 	}
 }
 

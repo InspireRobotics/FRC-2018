@@ -1,4 +1,4 @@
-package org.usfirst.frc.team4283.robot.pneumatic;
+package org.usfirst.frc.team4283.robot.util.pneumatic;
 
 import org.usfirst.frc.team4283.robot.HardwareMap;
 

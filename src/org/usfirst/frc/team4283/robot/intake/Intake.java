@@ -4,7 +4,7 @@ package org.usfirst.frc.team4283.robot.intake;
 import javax.swing.plaf.basic.BasicLabelUI;
 
 import org.usfirst.frc.team4283.robot.HardwareMap;
-import org.usfirst.frc.team4283.robot.pneumatic.TwoValvePneumatic;
+import org.usfirst.frc.team4283.robot.util.pneumatic.TwoValvePneumatic;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Compressor;
@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * @author Colin
  */
+@Deprecated
 public class Intake {
 	
 	private AnalogInput cubeDetector = new AnalogInput(1);

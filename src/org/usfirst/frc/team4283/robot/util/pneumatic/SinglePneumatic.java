@@ -1,4 +1,4 @@
-package org.usfirst.frc.team4283.robot.pneumatic;
+package org.usfirst.frc.team4283.robot.util.pneumatic;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Solenoid;
