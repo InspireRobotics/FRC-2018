@@ -29,6 +29,14 @@ public class TwoValvePneumatic{
 		b.set(false);
 	}
 	
+	public void raise(){
+		Scheduler.getInstance().add(new ValveSwitchClose(this));
+	}
+	
+	public void lower(){
+		Scheduler.getInstance().add(new ValveSwitchOpen(this));
+	}
+	
 	public void updateDashboard(){
 		SmartDashboard.putBoolean("  " + a.getName(), open);
 	}

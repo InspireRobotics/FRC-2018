@@ -54,7 +54,7 @@ public class Drivetrain {
 		drive.setName("Drivetrain");
 		//Just like Alex likes it
 		
-		//Add Stuff to the Dashboardt55
+		//Add Stuff to the Dashboardt
 		SmartDashboard.putData(drive);
 		SmartDashboard.putNumber("Speed Increment", .01);
 	}
@@ -73,8 +73,8 @@ public class Drivetrain {
 		gyroAngle = gyro.getAngle();
 		
 		//Get variables from the SmartDashboard
-		maxSpeedRight = SmartDashboard.getNumber("Max Speed Right", 1);
-		maxSpeedLeft = SmartDashboard.getNumber("Max Speed Left", 1);
+		maxSpeedRight = SmartDashboard.getNumber("Drive Max Speed Right", 1);
+		maxSpeedLeft = SmartDashboard.getNumber("Drive Max Speed Left", 1);
 		increment = SmartDashboard.getNumber("Speed Increment", .1);
 		
 		//Check if the drivetrain needs to get incremented
@@ -108,9 +108,9 @@ public class Drivetrain {
 			}else{//Update to drive straight
 				turnError = Math.abs(Math.abs(initialGyroDirection) - Math.abs(gyroAngle));
 				if(gyroAngle < initialGyroDirection){
-					drive.tankDrive(-leftSpeed + turnError * 0.01, -rightSpeed);
+					drive.tankDrive(-leftSpeed + turnError * 0.03, -rightSpeed);
 				}else if (gyroAngle > initialGyroDirection){
-					drive.tankDrive(-leftSpeed, -rightSpeed + turnError * 0.01);
+					drive.tankDrive(-leftSpeed, -rightSpeed + turnError * 0.03);
 				}
 			}
 			
@@ -118,9 +118,10 @@ public class Drivetrain {
 			drive.tankDrive(-leftSpeed, -rightSpeed);
 			isDrivingStraight = false;
 		}
+		
 		//Dashboard formatting
-		SmartDashboard.putNumber("Max Speed Right", maxSpeedRight);
-		SmartDashboard.putNumber("Max Speed Left", maxSpeedLeft);
+		SmartDashboard.putNumber("Drive Max Speed Right", maxSpeedRight);
+		SmartDashboard.putNumber("Drive Max Speed Left", maxSpeedLeft);
 		SmartDashboard.putNumber("Gyro Angle", gyroAngle);
 		SmartDashboard.putNumber("Driving Direction", initialGyroDirection);
 		SmartDashboard.putBoolean("Driving Straight", isDrivingStraight);
@@ -136,8 +137,9 @@ public class Drivetrain {
 		leftAuto = SmartDashboard.getNumber("Auto Left", 0.1);
 		rightAuto = SmartDashboard.getNumber("Auto Right", 0.1);
 		this.endTime = System.currentTimeMillis() + time;
-//		 SmartDashboard.putNumber("Auto Left", 0);
-//		 SmartDashboard.putNumber("Auto Right", 0);
+		 SmartDashboard.putNumber("Auto Left", leftAuto);
+		 SmartDashboard.putNumber("Auto Right", rightAuto);
+		 SmartDashboard.putNumber("Auto Time", time);
 	}
 	
 	public void autoUpdate(boolean useBlinky){
@@ -154,3 +156,13 @@ public class Drivetrain {
 		}
 	}
 }
+
+// Autonomous Code
+/*lift
+autoInit()
+leftAuto = fast
+rightAuto = fast
+autoUpdate(TRUE)
+wait3-5 seconds
+launch block
+*/
