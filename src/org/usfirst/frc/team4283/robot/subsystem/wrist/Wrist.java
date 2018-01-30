@@ -4,8 +4,9 @@ import org.usfirst.frc.team4283.robot.HardwareMap;
 import org.usfirst.frc.team4283.robot.subsystem.StandardSubsystem;
 
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Wrist implements StandardSubsystem {
+public class Wrist extends Subsystem implements StandardSubsystem {
 	
 	private Spark intakeLeft;
 	private Spark intakeRight; 
@@ -46,6 +47,11 @@ public class Wrist implements StandardSubsystem {
 	public void setSpeed(double speed) {
 		intakeLeft.set(speed);
 		intakeRight.set(speed);
+	}
+
+	@Override
+	protected void initDefaultCommand() {
+		
 	}
 
 }

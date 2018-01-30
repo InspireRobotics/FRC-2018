@@ -6,9 +6,10 @@ import org.usfirst.frc.team4283.robot.subsystem.StandardSubsystem;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
-public class Drivetrain implements StandardSubsystem {
+public class Drivetrain extends Subsystem implements StandardSubsystem {
 
 	private DifferentialDrive drive;
 
@@ -34,6 +35,8 @@ public class Drivetrain implements StandardSubsystem {
 		// Init the the drive train
 		drive = new DifferentialDrive(leftGroup, rightGroup);
 		drive.setName("Drivetrain");
+		
+		this.setDefaultCommand(new DriveCommand());
 	}
 
 	public void tankDrive(double left, double right) {
@@ -73,6 +76,11 @@ public class Drivetrain implements StandardSubsystem {
 	
 	public double getGyroValue() {
 		return gyro.getAngle();
+	}
+
+	@Override
+	protected void initDefaultCommand() {
+		
 	}
 }
 

@@ -4,7 +4,9 @@ import org.usfirst.frc.team4283.robot.HardwareMap;
 import org.usfirst.frc.team4283.robot.subsystem.StandardSubsystem;
 import org.usfirst.frc.team4283.robot.util.pneumatic.TwoValvePneumatic;
 
-public class Arm implements StandardSubsystem {
+import edu.wpi.first.wpilibj.command.Subsystem;
+
+public class Arm extends Subsystem implements StandardSubsystem {
 
 	private TwoValvePneumatic left;
 	private TwoValvePneumatic right;
@@ -42,6 +44,19 @@ public class Arm implements StandardSubsystem {
 	@Override
 	public void disable() {
 		
+	}
+
+	@Override
+	protected void initDefaultCommand() {
+		
+	}
+	
+	public TwoValvePneumatic getLeft() {
+		return left;
+	}
+	
+	public TwoValvePneumatic getRight() {
+		return right;
 	}
 
 }

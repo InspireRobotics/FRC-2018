@@ -11,10 +11,17 @@ public class SmartDouble {
 		super();
 		this.value = value;
 		this.name = name;
+		
+		update();
 	}
 
 	public double get(){
 		return value;
+	}
+	
+	public void set(double val) {
+		value = val;
+		SmartDashboard.putNumber(name, value);
 	}
 	
 	public void update(){
