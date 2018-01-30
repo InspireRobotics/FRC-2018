@@ -2,7 +2,6 @@ package org.usfirst.frc.team4283.robot.subsystem.drivetrain;
 
 import org.usfirst.frc.team4283.robot.HardwareMap;
 import org.usfirst.frc.team4283.robot.subsystem.StandardSubsystem;
-import org.usfirst.frc.team4283.robot.subsystem.led.LEDController;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Joystick;
@@ -144,6 +143,11 @@ public class Drivetrain implements StandardSubsystem {
 
 	@Override
 	public void disable() {
+		
+	}
+
+	@Override
+	public void autoInit() {
 		
 	}
 }
