@@ -62,12 +62,15 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		autoSelected = autoChooser.getSelected();
+		intake.autoInit();
 		drive.autoInit();
 		System.out.println("Auto selected: " + autoSelected);
 	}
 
 	@Override
 	public void autonomousPeriodic() {
+		Scheduler.getInstance().run();
+		intake.updateIntake();
 		drive.autoUpdate(blinkyEnabled);
 	}
 
