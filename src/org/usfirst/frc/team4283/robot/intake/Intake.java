@@ -16,17 +16,20 @@ public class Intake {
 
 	private Joystick auxController = HardwareMap.Joysticks.AUX;
 	private Spark intakeLeft = new Spark(HardwareMap.PWM.INTAKE_LEFT);
-	private Spark intakeRight = new Spark(HardwareMap.PWM.INTAKE_LEFT);
+	private Spark intakeRight = new Spark(HardwareMap.PWM.INTAKE_RIGHT);
 
 	private Compressor compressor = new Compressor();
 	private TwoValvePneumatic left = new TwoValvePneumatic(HardwareMap.Pneumatic.LEFT_INTAKE, 0, "Left Pneumatic");
 	private TwoValvePneumatic right = new TwoValvePneumatic(HardwareMap.Pneumatic.RIGHT_INTAKE, 0, "Right Pneumatic");
 	
-	private double maxSpeedRight = 1.0, maxSpeedLeft = 1.0;
+	private double maxSpeedRight = 0.5, maxSpeedLeft = 0.5;
 	
 	public Intake() {
 		compressor.setClosedLoopControl(true);
 		compressor.start();
+	
+//		SmartDashboard.putNumber("Intake Max Speed Left", 1);
+//		SmartDashboard.putNumber("Intake Max Speed Right", 1);
 	}
 	
 	public void updateTeleOp() {
@@ -44,11 +47,7 @@ public class Intake {
 	
 	private void updateWheels() {
 		double leftSpeed = -auxController.getRawAxis(1);
-		double rightSpeed = -auxController.getRawAxis(5);
-
-		// Get variables from the SmartDashboard
-		maxSpeedRight = SmartDashboard.getNumber("Max Speed Right", 1);
-		maxSpeedLeft = SmartDashboard.getNumber("Max Speed Left", 1);
+		double rightSpeed = auxController.getRawAxis(5);
 
 		// Check the max speed
 		if (rightSpeed > maxSpeedRight)

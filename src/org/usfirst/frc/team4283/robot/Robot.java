@@ -6,6 +6,7 @@ import org.usfirst.frc.team4283.robot.led.LEDController;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -14,7 +15,7 @@ public class Robot extends IterativeRobot {
 	/*
 	 * Subsystems enable control
 	 */
-	private final boolean intakeEnabled = false;
+	private final boolean intakeEnabled = true;
 	private final boolean blinkyEnabled = false;
 	
 	/*
@@ -77,6 +78,8 @@ public class Robot extends IterativeRobot {
 	
 	@Override
 	public void teleopPeriodic() {
+		Scheduler.getInstance().run();
+		
 		drive.updateTeleOp();
 		
 		if(intakeEnabled)

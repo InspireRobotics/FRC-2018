@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4283.robot.pneumatic;
 
-import edu.wpi.first.wpilibj.Joystick;
+import org.usfirst.frc.team4283.robot.HardwareMap;
+
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
@@ -13,12 +14,12 @@ public class TwoValvePneumatic{
 	private Solenoid b;
 	private JoystickButton buttonOpen;
 	private JoystickButton buttonClose;
-	private boolean open = true;
+	private boolean open = false;
 	
 	public TwoValvePneumatic(int port, int buttonNum, String name) {
-		buttonOpen = new JoystickButton(new Joystick(0), (buttonNum * 2) + 1);
+		buttonOpen = new JoystickButton(HardwareMap.Joysticks.AUX, (buttonNum * 2) + 1);
 		buttonOpen.whenPressed(new ValveSwitchOpen(this));
-		buttonClose = new JoystickButton(new Joystick(0), (buttonNum * 2) + 2);
+		buttonClose = new JoystickButton(HardwareMap.Joysticks.AUX, (buttonNum * 2) + 2);
 		buttonClose.whenPressed(new ValveSwitchClose(this));
 		close();
 		a = new Solenoid(port * 2);
@@ -37,6 +38,7 @@ public class TwoValvePneumatic{
 		private TwoValvePneumatic pneumatic;
 		private boolean opened;
 		private boolean finished = false;
+		private int count = 0;
 		
 		public ValveSwitchOpen(TwoValvePneumatic p) {
 			this.pneumatic = p;
@@ -55,16 +57,18 @@ public class TwoValvePneumatic{
 				pneumatic.b.set(false);
 				opened = true;
 				pneumatic.open = true;
-			}else if(!finished){
+			}else if(!finished && count > 1){
 				System.out.println("Finished Opening!");
 				finished = true;
 				pneumatic.a.set(false);
 			}
+			count++;
 		}
 		
 		@Override
 		protected void end() {
 			finished = false;
+			count = 0;
 			opened = false;
 		}
 		
@@ -80,6 +84,7 @@ public class TwoValvePneumatic{
 		private TwoValvePneumatic pneumatic;
 		private boolean closed;
 		private boolean finished = false;
+		private int count = 0;
 		
 		public ValveSwitchClose(TwoValvePneumatic p) {
 			this.pneumatic = p;
@@ -93,18 +98,19 @@ public class TwoValvePneumatic{
 				pneumatic.b.set(true);
 				closed = true;
 				pneumatic.open = false;
-			}else if(!finished){
+			}else if(!finished && count > 1){
 				System.out.println("Finished Closing!");
 				finished = true;
 				pneumatic.b.set(false);
 			}
-			
+			count++;
 		}
 		
 		@Override
 		protected void end() {
 			finished = false;
 			closed = false;
+			count = 0;
 		}
 		
 		@Override
