@@ -23,6 +23,8 @@ public class HardwareMap {
 	public static class Pneumatic{
 		public static final int RIGHT_INTAKE = 0;
 		public static final int LEFT_INTAKE = 1;
+		public static final int BOTTOM_CLIMBER = 2;
+		public static final int TOP_CLIMBER = 3;
 	}
 	
 	public static class Analog{
