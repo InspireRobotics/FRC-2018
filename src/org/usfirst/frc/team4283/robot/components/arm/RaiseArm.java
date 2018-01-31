@@ -1,4 +1,4 @@
-package org.usfirst.frc.team4283.robot.subsystem.arm;
+package org.usfirst.frc.team4283.robot.components.arm;
 
 import org.usfirst.frc.team4283.robot.Subsystems;
 import org.usfirst.frc.team4283.robot.util.pneumatic.RaisePneumatic;
@@ -16,7 +16,7 @@ public class RaiseArm extends CommandGroup {
 		this.addSequential(new WaitCommand("Raise Waiting Period", 3));
 		this.addSequential(new PrintCommand("Done Raising Arm!"));
 		
-		this.setSubsystem(Subsystems.ARM.toString());
+		this.setSubsystem(Subsystems.ARM);
 	}
 
 }

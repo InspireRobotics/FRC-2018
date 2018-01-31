@@ -1,18 +1,19 @@
-package org.usfirst.frc.team4283.robot.subsystem.arm;
+package org.usfirst.frc.team4283.robot.components.arm;
 
 import org.usfirst.frc.team4283.robot.HardwareMap;
-import org.usfirst.frc.team4283.robot.subsystem.StandardSubsystem;
+import org.usfirst.frc.team4283.robot.Subsystems;
+import org.usfirst.frc.team4283.robot.components.Component;
 import org.usfirst.frc.team4283.robot.util.pneumatic.TwoValvePneumatic;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Arm extends Subsystem implements StandardSubsystem {
+public class Arm extends Subsystem implements Component {
 
 	private TwoValvePneumatic left;
 	private TwoValvePneumatic right;
 	
 	public Arm() {
-		this.setName(toString());
+		this.setName(Subsystems.ARM);
 	}
 
 	@Override

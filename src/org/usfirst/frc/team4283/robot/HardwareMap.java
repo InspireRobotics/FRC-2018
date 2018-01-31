@@ -12,6 +12,7 @@ public class HardwareMap {
 		public static final int INTAKE_LEFT = 4;
 		public static final int INTAKE_RIGHT = 5;
 		public static final int BLINKY = 6;
+		public static final int WRIST = 7;
 	}
 	
 	public static class Joysticks{

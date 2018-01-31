@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 public class Robot extends IterativeRobot {
 	
 	private Compressor compressor;
-	private Subsystems subs;
+	private Components subs;
 	
 	@Override
 	public void robotInit() {

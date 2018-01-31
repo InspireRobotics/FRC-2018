@@ -1,24 +1,27 @@
-package org.usfirst.frc.team4283.robot.subsystem.drivetrain;
+package org.usfirst.frc.team4283.robot.components.drivetrain;
 
 import org.usfirst.frc.team4283.robot.HardwareMap;
 import org.usfirst.frc.team4283.robot.Subsystems;
+import org.usfirst.frc.team4283.robot.Components;
 import org.usfirst.frc.team4283.robot.util.SmartDouble;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DriveCommand extends Command {
+public class DriveManual extends Command {
 
 	private Joystick controller = HardwareMap.Joysticks.AUX;
-	private Drivetrain drive = Subsystems.DRIVE;
+	private Drivetrain drive = Components.DRIVE;
 	
 	private SmartDouble leftMax, rightMax;
 	
-	public DriveCommand() {
+	public DriveManual() {
 		this.setInterruptible(true);
 		
 		leftMax = new SmartDouble(1, "Left Drive Max");
 		rightMax = new SmartDouble(1, "Right Drive Max");
+		
+		this.setSubsystem(Subsystems.DRIVE);
 	}
 	
 	@Override

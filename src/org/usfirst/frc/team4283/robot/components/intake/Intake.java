@@ -1,23 +1,23 @@
-package org.usfirst.frc.team4283.robot.subsystem.wrist;
+package org.usfirst.frc.team4283.robot.components.intake;
 
 import org.usfirst.frc.team4283.robot.HardwareMap;
-import org.usfirst.frc.team4283.robot.subsystem.StandardSubsystem;
+import org.usfirst.frc.team4283.robot.Subsystems;
+import org.usfirst.frc.team4283.robot.components.Component;
 
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Wrist extends Subsystem implements StandardSubsystem {
+public class Intake extends Subsystem implements Component {
 	
 	private Spark intakeLeft;
 	private Spark intakeRight; 
-	private Spark wrist;
 	
 	@Override
 	public void robotInit() {
 		intakeLeft = new Spark(HardwareMap.PWM.INTAKE_LEFT);
 		intakeRight = new Spark(HardwareMap.PWM.INTAKE_RIGHT);
 		
-		this.setName(toString());
+		this.setName(Subsystems.INTAKE);
 	}
 
 	@Override
@@ -60,15 +60,6 @@ public class Wrist extends Subsystem implements StandardSubsystem {
 	@Override
 	protected void initDefaultCommand() {
 		
-	}
-	
-	@Override
-	public String toString() {
-		return "Wrist";
-	}
-
-	public void setWristSpeed(double d) {
-		wrist.set(d);
 	}
 
 }

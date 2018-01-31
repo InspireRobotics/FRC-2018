@@ -1,4 +1,4 @@
-package org.usfirst.frc.team4283.robot.subsystem.led;
+package org.usfirst.frc.team4283.robot.components.led;
 
 import org.usfirst.frc.team4283.robot.HardwareMap;
 

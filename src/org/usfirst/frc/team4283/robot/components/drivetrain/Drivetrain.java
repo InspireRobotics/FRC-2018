@@ -1,7 +1,8 @@
-package org.usfirst.frc.team4283.robot.subsystem.drivetrain;
+package org.usfirst.frc.team4283.robot.components.drivetrain;
 
 import org.usfirst.frc.team4283.robot.HardwareMap;
-import org.usfirst.frc.team4283.robot.subsystem.StandardSubsystem;
+import org.usfirst.frc.team4283.robot.Subsystems;
+import org.usfirst.frc.team4283.robot.components.Component;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Spark;
@@ -9,7 +10,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
-public class Drivetrain extends Subsystem implements StandardSubsystem {
+public class Drivetrain extends Subsystem implements Component {
 
 	private DifferentialDrive drive;
 
@@ -34,9 +35,10 @@ public class Drivetrain extends Subsystem implements StandardSubsystem {
 
 		// Init the the drive train
 		drive = new DifferentialDrive(leftGroup, rightGroup);
-		drive.setName("Drivetrain");
+		drive.setName(Subsystems.DRIVE);
 		
-		this.setDefaultCommand(new DriveCommand());
+		this.setName(Subsystems.DRIVE);
+		this.setDefaultCommand(new DriveManual());
 	}
 
 	public void tankDrive(double left, double right) {

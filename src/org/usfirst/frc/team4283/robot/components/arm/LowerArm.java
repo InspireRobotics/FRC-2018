@@ -1,4 +1,4 @@
-package org.usfirst.frc.team4283.robot.subsystem.arm;
+package org.usfirst.frc.team4283.robot.components.arm;
 
 import org.usfirst.frc.team4283.robot.Subsystems;
 import org.usfirst.frc.team4283.robot.util.pneumatic.LowerPneumatic;
@@ -16,7 +16,7 @@ public class LowerArm extends CommandGroup {
 		this.addSequential(new WaitCommand("Lower Waiting Period", 3));
 		this.addSequential(new PrintCommand("Done Lowering Arm!"));
 		
-		this.setSubsystem(Subsystems.ARM.toString());
+		this.setSubsystem(Subsystems.ARM);
 	}
 	
 }
