@@ -4,23 +4,25 @@ import org.usfirst.frc.team4283.robot.HardwareMap;
 import org.usfirst.frc.team4283.robot.Subsystems;
 import org.usfirst.frc.team4283.robot.components.Component;
 
-import edu.wpi.first.wpilibj.Spark;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Wrist extends Subsystem implements Component {
 	
-	private Spark wrist;
+	private TalonSRX wrist;
 	
 	@Override
 	public void robotInit() {
-		wrist = new Spark(HardwareMap.PWM.WRIST);
+		wrist = new TalonSRX(HardwareMap.CAN.WRIST);
 		
 		this.setName(Subsystems.WRIST);
 	}
 
 	@Override
 	public void teleOpInit() {
-		wrist.stopMotor();	
+		wrist.set(ControlMode.PercentOutput, 0);
 	}
 
 	@Override
@@ -40,11 +42,11 @@ public class Wrist extends Subsystem implements Component {
 
 	@Override
 	public void disable() {
-		wrist.stopMotor();
+		wrist.set(ControlMode.PercentOutput, 0);
 	}
 	
 	public void stop() {
-		wrist.stopMotor();
+		wrist.set(ControlMode.PercentOutput, 0);
 	}
 	
 	@Override
@@ -53,7 +55,7 @@ public class Wrist extends Subsystem implements Component {
 	}
 
 	public void setWristSpeed(double d) {
-		wrist.set(d);
+		wrist.set(ControlMode.PercentOutput, d);
 	}
 
 }

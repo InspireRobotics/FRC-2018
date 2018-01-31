@@ -21,7 +21,6 @@ public class RaisePneumatic extends Command{
 			pneumatic.a.set(false);
 			pneumatic.b.set(true);
 			closed = true;
-			pneumatic.open = false;
 		}else if(!finished && count > 1){
 			System.out.println("Finished Closing!");
 			finished = true;

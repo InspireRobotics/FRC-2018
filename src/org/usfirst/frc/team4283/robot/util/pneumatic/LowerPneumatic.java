@@ -26,7 +26,6 @@ public class LowerPneumatic extends Command{
 			pneumatic.a.set(true);
 			pneumatic.b.set(false);
 			opened = true;
-			pneumatic.open = true;
 		}else if(!finished && count > 1){
 			finished = true;
 			pneumatic.a.set(false);
