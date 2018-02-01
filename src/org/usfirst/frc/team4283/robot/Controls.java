@@ -7,6 +7,13 @@ import org.usfirst.frc.team4283.robot.components.climber.RaiseClimber;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
+/**
+ * The map of all the non-default controls. This maps 
+ * button inputs to the necessary to commands
+ * 
+ * @author Noah
+ *
+ */
 public class Controls {
 
 	// Arm Buttons
