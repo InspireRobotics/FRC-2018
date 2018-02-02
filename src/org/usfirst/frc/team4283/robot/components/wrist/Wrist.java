@@ -16,8 +16,9 @@ public class Wrist extends Subsystem implements Component {
 	/*
 	 * PID Values
 	 */
-	private static final SmartDouble P = new SmartDouble(0.005, "WRIST P"),  I = new SmartDouble(0, "WRIST I"), D = new SmartDouble(0, ""), F = 0;
+	private static final SmartDouble P = new SmartDouble(0.005, "WRIST P"),  I = new SmartDouble(0, "WRIST I"), D = new SmartDouble(0, "");
 	
+	private SmartDouble encoder = new SmartDouble(0, "Wrist Encoder");
 	private TalonSRX wrist;
 	
 	@Override
@@ -39,7 +40,7 @@ public class Wrist extends Subsystem implements Component {
 
 	@Override
 	public void teleOpPeriodic() {
-		
+		encoder.set(wrist.getSensorCollection().getQuadraturePosition());
 	}
 
 	@Override
@@ -69,5 +70,21 @@ public class Wrist extends Subsystem implements Component {
 	public void setWristSpeed(double d) {
 		wrist.set(ControlMode.PercentOutput, d);
 	}
-
+	
+	public double getEncoderAngle() {
+		return wrist.getSensorCollection().getQuadraturePosition();
+	}
+	
+	public void setAngle(double angle) {
+		wrist.set(ControlMode.Position, angleToEncoderPosition(angle));
+	}
+	
+	public double angleToEncoderPosition(double angle) {
+		return angle * (4096 / 360);
+	}
+	
+	public double getWristAngle() {
+		return getEncoderAngle() / (4096 / 360);
+	} 
+	
 }
