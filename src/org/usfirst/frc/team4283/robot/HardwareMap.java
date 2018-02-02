@@ -15,7 +15,7 @@ public class HardwareMap {
 	}
 	
 	public static class CAN{
-		public static final int WRIST = 4;
+		public static final int WRIST = 2;
 	}
 	
 	public static class Joysticks{
