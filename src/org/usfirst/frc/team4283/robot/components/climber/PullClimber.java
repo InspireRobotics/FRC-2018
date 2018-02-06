@@ -2,7 +2,6 @@ package org.usfirst.frc.team4283.robot.components.climber;
 
 import org.usfirst.frc.team4283.robot.Components;
 import org.usfirst.frc.team4283.robot.util.pneumatic.LowerPneumatic;
-import org.usfirst.frc.team4283.robot.util.pneumatic.RaisePneumatic;
 import org.usfirst.frc.team4283.robot.util.pneumatic.TwoValvePneumatic;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;

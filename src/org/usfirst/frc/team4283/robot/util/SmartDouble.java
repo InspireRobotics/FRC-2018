@@ -16,6 +16,7 @@ public class SmartDouble {
 	}
 
 	public double get(){
+		update();
 		return value;
 	}
 	
