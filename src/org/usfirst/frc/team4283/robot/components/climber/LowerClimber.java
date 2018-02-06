@@ -1,6 +1,6 @@
 package org.usfirst.frc.team4283.robot.components.climber;
 
-import org.usfirst.frc.team4283.robot.Subsystems;
+import org.usfirst.frc.team4283.robot.Components;
 import org.usfirst.frc.team4283.robot.util.pneumatic.LowerPneumatic;
 import org.usfirst.frc.team4283.robot.util.pneumatic.TwoValvePneumatic;
 
@@ -16,7 +16,7 @@ public class LowerClimber extends CommandGroup {
 		this.addSequential(new WaitCommand("Lower Waiting Period", 3));
 		this.addSequential(new PrintCommand("Done Lower Climbing!"));
 		
-		this.setSubsystem(Subsystems.CLIMBER);
+		this.requires(Components.CLIMB);
 	}
 
 }

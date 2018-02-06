@@ -21,7 +21,7 @@ public class Robot extends IterativeRobot {
 	/*
 	 * Manages all of the components (drivetrain, climber, intake, etc.) on the robot. 
 	 */
-	private Components subs;
+	private Components subs = new Components();
 	
 	@Override
 	public void robotInit() {

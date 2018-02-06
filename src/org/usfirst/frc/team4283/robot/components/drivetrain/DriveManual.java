@@ -1,8 +1,7 @@
 package org.usfirst.frc.team4283.robot.components.drivetrain;
 
-import org.usfirst.frc.team4283.robot.HardwareMap;
-import org.usfirst.frc.team4283.robot.Subsystems;
 import org.usfirst.frc.team4283.robot.Components;
+import org.usfirst.frc.team4283.robot.HardwareMap;
 import org.usfirst.frc.team4283.robot.util.SmartDouble;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -10,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveManual extends Command {
 
-	private Joystick controller = HardwareMap.Joysticks.AUX;
+	private Joystick controller = HardwareMap.Joysticks.DRIVE;
 	private Drivetrain drive = Components.DRIVE;
 	
 	private SmartDouble leftMax, rightMax;
@@ -21,7 +20,7 @@ public class DriveManual extends Command {
 		leftMax = new SmartDouble(1, "Left Drive Max");
 		rightMax = new SmartDouble(1, "Right Drive Max");
 		
-		this.setSubsystem(Subsystems.DRIVE);
+		this.requires(Components.DRIVE);
 	}
 	
 	@Override

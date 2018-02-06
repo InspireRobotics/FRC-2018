@@ -48,8 +48,8 @@ public class Intake extends Subsystem implements Component {
 	}
 	
 	public void setIntakeSpeed(double speed) {
-		intakeLeft.set(-speed);
-		intakeRight.set(speed);
+		intakeLeft.set(speed);
+		intakeRight.set(-speed);
 	}
 	
 	public void stop() {
@@ -59,7 +59,7 @@ public class Intake extends Subsystem implements Component {
 	
 	@Override
 	protected void initDefaultCommand() {
-		
+		this.setDefaultCommand(new IntakeManual());
 	}
 
 }

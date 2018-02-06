@@ -17,12 +17,10 @@ public class RaisePneumatic extends Command{
 	@Override
 	protected void execute() {
 		if(!closed && !finished){
-			System.out.println("Finished Closing!");
 			pneumatic.a.set(false);
 			pneumatic.b.set(true);
 			closed = true;
 		}else if(!finished && count > 1){
-			System.out.println("Finished Closing!");
 			finished = true;
 			pneumatic.b.set(false);
 		}

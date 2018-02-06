@@ -13,7 +13,7 @@ public class RaiseArm extends CommandGroup {
 	public RaiseArm(TwoValvePneumatic valveOne, TwoValvePneumatic valveTwo) {
 		this.addParallel(new RaisePneumatic(valveOne));
 		this.addParallel(new RaisePneumatic(valveTwo));
-		this.addSequential(new WaitCommand("Raise Waiting Period", 3));
+		this.addSequential(new WaitCommand("Raise Waiting Period", 1));
 		this.addSequential(new PrintCommand("Done Raising Arm!"));
 		
 		this.setSubsystem(Subsystems.ARM);

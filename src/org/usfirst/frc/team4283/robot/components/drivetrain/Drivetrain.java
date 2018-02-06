@@ -35,10 +35,9 @@ public class Drivetrain extends Subsystem implements Component {
 
 		// Init the the drive train
 		drive = new DifferentialDrive(leftGroup, rightGroup);
-		drive.setName(Subsystems.DRIVE);
 		
+		drive.setSafetyEnabled(false);
 		this.setName(Subsystems.DRIVE);
-		this.setDefaultCommand(new DriveManual());
 	}
 
 	public void tankDrive(double left, double right) {
@@ -58,7 +57,7 @@ public class Drivetrain extends Subsystem implements Component {
 
 	@Override
 	public void teleOpPeriodic() {
-
+		this.tankDrive(0, 0);
 	}
 
 	@Override
@@ -82,7 +81,7 @@ public class Drivetrain extends Subsystem implements Component {
 
 	@Override
 	protected void initDefaultCommand() {
-		
+		setDefaultCommand(new DriveManual());
 	}
 }
 
