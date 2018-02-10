@@ -48,7 +48,7 @@ public class Intake extends Subsystem implements Component {
 	}
 	
 	public void setIntakeSpeed(double speed) {
-		intakeLeft.set(speed);
+		intakeLeft.set(speed + (0.1 * Math.signum(speed)));
 		intakeRight.set(-speed);
 	}
 	
