@@ -17,29 +17,44 @@ public class DriveManual extends Command {
 	public DriveManual() {
 		this.setInterruptible(true);
 		
-		leftMax = new SmartDouble(1, "Left Drive Max");
-		rightMax = new SmartDouble(1, "Right Drive Max");
+		leftMax = new SmartDouble(.77, "Left Drive Max");
+		rightMax = new SmartDouble(.65, "Right Drive Max");
 		
 		this.requires(Components.DRIVE);
 	}
 	
 	@Override
 	protected void execute() {
-		double leftSpeed = controller.getRawAxis(1);
-		double rightSpeed = controller.getRawAxis(5);
+		double leftSpeed = -controller.getRawAxis(1);
+		double rightSpeed = -controller.getRawAxis(5);
 		
 		double leftMaxDouble = leftMax.get();
 		double rightMaxDouble = rightMax.get();
 		
-		//Check if the drivetrain needs to get incremented
-		if(controller.getRawButton(5)){//Left
-			rightMaxDouble -= .1;
-			leftMaxDouble -= .1;
+		if(leftMaxDouble < 0){
+			leftMaxDouble = 0;
 		}
-		if(controller.getRawButton(6)){//Right
-			leftMaxDouble += .1;
-			rightMaxDouble += .1;
+		
+		if(rightMaxDouble < 0){
+			rightMaxDouble = 0;
 		}
+			
+		if(controller.getRawButton(5) && controller.getRawButton(6)){
+			leftMaxDouble = 0.77;
+			rightMaxDouble = 0.65;
+		}else{
+			//Check if the drivetrain needs to get incremented
+			if(controller.getRawButton(5)){//Left
+				rightMaxDouble -= .01;
+				leftMaxDouble -= .01;
+			}
+			if(controller.getRawButton(6)){//Right
+				leftMaxDouble += .01;
+				rightMaxDouble += .01;
+			}
+		}
+		
+		
 		
 		//Check the max speed
 		if(rightSpeed > rightMaxDouble)

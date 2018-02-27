@@ -16,6 +16,7 @@ public class SmartDouble {
 	}
 
 	public double get(){
+		update();
 		return value;
 	}
 	
@@ -25,7 +26,7 @@ public class SmartDouble {
 	}
 	
 	public void update(){
-		SmartDashboard.getNumber(name, value);
+		value = SmartDashboard.getNumber(name, value);
 		SmartDashboard.putNumber(name, value);
 	}
 	

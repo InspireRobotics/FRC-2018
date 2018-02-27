@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Drivetrain extends Subsystem implements Component {
 
@@ -28,13 +29,17 @@ public class Drivetrain extends Subsystem implements Component {
 		fl = new Spark(HardwareMap.PWM.DRIVE_FL);
 		br = new Spark(HardwareMap.PWM.DRIVE_BR);
 		bl = new Spark(HardwareMap.PWM.DRIVE_BL);
-
+		
 		// Create the side modules
 		leftGroup = new SpeedControllerGroup(bl, fl);
 		rightGroup = new SpeedControllerGroup(br, fr);
 
 		// Init the the drive train
 		drive = new DifferentialDrive(leftGroup, rightGroup);
+		
+		//Init the gyro
+		gyro.calibrate();
+		SmartDashboard.putData("Gyro", gyro);
 		
 		drive.setSafetyEnabled(false);
 		this.setName(Subsystems.DRIVE);
@@ -52,7 +57,6 @@ public class Drivetrain extends Subsystem implements Component {
 	@Override
 	public void teleOpInit() {
 		stop();
-		gyro.calibrate();
 	}
 
 	@Override
@@ -62,7 +66,7 @@ public class Drivetrain extends Subsystem implements Component {
 
 	@Override
 	public void autoPeriodic() {
-
+		this.tankDrive(0, 0);
 	}
 
 	@Override
@@ -72,7 +76,7 @@ public class Drivetrain extends Subsystem implements Component {
 
 	@Override
 	public void autoInit() {
-		gyro.calibrate();
+
 	}
 	
 	public double getGyroValue() {

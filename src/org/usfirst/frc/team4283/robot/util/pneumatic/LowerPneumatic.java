@@ -22,6 +22,8 @@ public class LowerPneumatic extends Command{
 	
 	@Override
 	protected void execute() {
+		pneumatic.setRaised(false);
+		
 		if(!opened && !finished){
 			pneumatic.a.set(true);
 			pneumatic.b.set(false);

@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class LEDController {
 
 	private static LEDController instance;
-	private Spark spark = new Spark(HardwareMap.PWM.BLINKY);
+//	private Spark spark = new Spark(HardwareMap.PWM.BLINKY);
 	private double val;
 
 	private LEDController() {
@@ -16,7 +16,7 @@ public class LEDController {
 	}
 
 	public void update() {
-		spark.set(val);
+//		spark.set(val);
 		SmartDashboard.putNumber("LED Value", val);
 	}
 

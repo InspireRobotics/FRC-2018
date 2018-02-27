@@ -16,6 +16,8 @@ public class RaisePneumatic extends Command{
 	
 	@Override
 	protected void execute() {
+		pneumatic.setRaised(true);
+		
 		if(!closed && !finished){
 			pneumatic.a.set(false);
 			pneumatic.b.set(true);

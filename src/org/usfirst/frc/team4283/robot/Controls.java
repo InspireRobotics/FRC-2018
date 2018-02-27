@@ -5,6 +5,7 @@ import org.usfirst.frc.team4283.robot.components.arm.RaiseArm;
 import org.usfirst.frc.team4283.robot.components.climber.LowerClimber;
 import org.usfirst.frc.team4283.robot.components.climber.PullClimber;
 import org.usfirst.frc.team4283.robot.components.climber.RaiseClimber;
+import org.usfirst.frc.team4283.robot.components.intake.RunIntake;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -18,7 +19,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class Controls {
 
 	// Arm Buttons
-	private static JoystickButton raiseArmButton, lowerArmButton;
+	private static JoystickButton raiseArmButton, lowerArmButton, intakeButton;
 
 	// Climbing Buttons
 	private static JoystickButton raiseClimberButton, lowerClimberButton, climbButton;
@@ -32,8 +33,12 @@ public class Controls {
 		raiseArmButton = new JoystickButton(HardwareMap.Joysticks.AUX, 2);
 		raiseArmButton.toggleWhenPressed(new RaiseArm(Components.ARM.getRight(), Components.ARM.getLeft()));
 
+		//Intake Button
+		intakeButton = new JoystickButton(HardwareMap.Joysticks.AUX, 3);
+		intakeButton.toggleWhenPressed(new RunIntake());
+		
 		// Raise Climber
-		raiseClimberButton = new JoystickButton(HardwareMap.Joysticks.DRIVE, 1);
+		raiseClimberButton = new JoystickButton(HardwareMap.Joysticks.DRIVE, 3);
 		raiseClimberButton.toggleWhenPressed(new RaiseClimber(Components.CLIMB.getBottom(), Components.CLIMB.getTop()));
 		
 		//Climb
@@ -41,7 +46,7 @@ public class Controls {
 		climbButton.toggleWhenPressed(new PullClimber(Components.CLIMB.getBottom()));
 		
 		//Lower All Climb
-		lowerClimberButton = new JoystickButton(HardwareMap.Joysticks.DRIVE, 3);
+		lowerClimberButton = new JoystickButton(HardwareMap.Joysticks.DRIVE, 1);
 		lowerClimberButton.toggleWhenPressed(new LowerClimber(Components.CLIMB.getTop(), Components.CLIMB.getBottom()));
 	}
 

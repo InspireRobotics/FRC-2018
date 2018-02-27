@@ -5,7 +5,6 @@ import org.usfirst.frc.team4283.robot.components.arm.Arm;
 import org.usfirst.frc.team4283.robot.components.climber.Climber;
 import org.usfirst.frc.team4283.robot.components.drivetrain.Drivetrain;
 import org.usfirst.frc.team4283.robot.components.intake.Intake;
-import org.usfirst.frc.team4283.robot.components.wrist.Wrist;
 
 public class Components implements Component{
 	
@@ -15,14 +14,13 @@ public class Components implements Component{
 	
 	public static final Drivetrain DRIVE = new Drivetrain();
 	public static final Arm ARM = new Arm();
-	public static final Wrist WRIST = new Wrist();
 	public static final Climber CLIMB = new Climber();
 	public static final Intake INTAKE = new Intake();
 	
 	/*
 	 * List of Subsystems
 	 */
-	private static final Component[] components = {DRIVE, INTAKE, ARM, WRIST, CLIMB};
+	private static final Component[] components = {DRIVE, INTAKE, ARM, CLIMB};
 
 	@Override
 	public void robotInit() {
